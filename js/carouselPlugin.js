@@ -26,7 +26,7 @@
                 }
 
                 if(imageNumber === 0){
-                    displayTitleNumber = settings.imageList.length;
+                    displayTitleNumber = settings.imageList.length-1;
                 }else{
                     displayTitleNumber = imageNumber-1;
                 }
@@ -34,16 +34,18 @@
                 switch(settings.transition){
                     case 'fade':
                         console.log(imageNumber);
+                        console.log(displayTitleNumber);
+                        $("#imageTitle").fadeOut('slow');
                         if(whosvisible === 1){
                             $("#carouselImage1").fadeOut('slow', function(){
                                 whosvisible = 2;
-                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]);
+                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]).css('display', 'block');
                                 $("#carouselImage1").css({display: 'block', 'z-index': --zindex}).attr('src', 'images/'+settings.imageList[imageNumber]);
                             });
                         }else{
                             $("#carouselImage2").fadeOut('slow', function(){
                                 whosvisible = 1;
-                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]);
+                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]).css('display', 'block');
                                 $("#carouselImage2").css({display: 'block', 'z-index': --zindex}).attr('src', 'images/'+settings.imageList[imageNumber]);
                             });
                         }
