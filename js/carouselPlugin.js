@@ -8,41 +8,45 @@
         var displayTitleNumber = 0;
         var timeout;
         var settings = $.extend({
-            timeBetweenImages: 3,
+            timeBetweenImages: 5,
             transition: 'fade', //fade, slide, flash
             imageList: ['1.JPG', '2.JPG', '3.JPG', '4.JPG', '5.JPG'],
             imageTitle: ["Mee", "LA Valley during Day", "During Night", "HorshoeBend", "Some Blvd"]
         }, options);
 
+        if(settings.transition === "flash"){
+            imageNumber = 0;
+        }
+
         var changeImage = function(){
+
             setInterval(function(){
                 if(++imageNumber > settings.imageList.length-1){
                     imageNumber = 0;
                 }
 
                 if(imageNumber === 0){
-                    displayTitleNumber = 4;
+                    displayTitleNumber = settings.imageList.length;
                 }else{
                     displayTitleNumber = imageNumber-1;
                 }
 
                 switch(settings.transition){
                     case 'fade':
+                        console.log(imageNumber);
                         if(whosvisible === 1){
                             $("#carouselImage1").fadeOut('slow', function(){
                                 whosvisible = 2;
+                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]);
                                 $("#carouselImage1").css({display: 'block', 'z-index': --zindex}).attr('src', 'images/'+settings.imageList[imageNumber]);
                             });
                         }else{
                             $("#carouselImage2").fadeOut('slow', function(){
                                 whosvisible = 1;
+                                $("#imageTitle").text(settings.imageTitle[displayTitleNumber]);
                                 $("#carouselImage2").css({display: 'block', 'z-index': --zindex}).attr('src', 'images/'+settings.imageList[imageNumber]);
                             });
                         }
-                        clearTimeout(timeout);
-                        timeout = setTimeout(function() {
-                            $("#imageTitle").text(settings.imageTitle[displayTitleNumber]);
-                        }, 50);
                         break;
                     case 'flash':
                         $("#carouselImage1").attr('src', 'images/'+settings.imageList[imageNumber]);
@@ -52,7 +56,15 @@
                         }, 50);
                         break;
                     case 'slide':
-                        $("#carouselImage1").attr('src', 'images/'+settings.imageList[imageNumber]).fadeOut('slow');
+                        $("#carouselImage1, #carouselImage2").css('display', 'none');
+                        $('#imageTitle').fadeOut('slow');
+                        $("#slider").animate({'margin-left' : '-=1000'}, 2000, function(){
+                            $(this).find('img').removeClass('next');
+                            $(this).find('img').first().appendTo("#slider").addClass('next');
+                            $('.next').attr('src', 'images/'+settings.imageList[imageNumber]);
+                            $("#imageTitle").css('display', 'block').text(settings.imageTitle[displayTitleNumber]);
+                            $(this).removeAttr('style');
+                        });
                         break;
                 }
             }, settings.timeBetweenImages*1000);

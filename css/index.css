@@ -13,6 +13,7 @@ html,body{
     width: 1000px;
     height: 400px;
     position: relative;
+    overflow: hidden;
 }
 
 #carouselImage1, #carouselImage2{
@@ -21,11 +22,10 @@ html,body{
     left: 0px;
     width: 1000px;
     height: 400px;
-
 }
 
 #carouselImage1{
-    z-index: 1000;
+    z-index: 999;
 }
 
 #carouselImage2{
@@ -54,4 +54,15 @@ html,body{
     line-height: 40px;
     font-size: 21px;
     z-index: 1003;
+}
+
+/* Slider */
+#slider{
+    width: 3000px;
+    height: 400px;
+}
+
+.slideImage{
+    width: 1000px;
+    height: 400px;
 }
