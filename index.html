@@ -14,25 +14,38 @@
                 <img src="images/1.JPG" id="slideImage1" class="slideImage">
                 <img src="images/2.JPG" id="slideImage2" class="slideImage next">
             </div>
+
+            <div id="circlesOuterContainer">
+                <div id="circlesInnerContainer">
+                    <div class="circles"></div>
+                    <div class="circles"></div>
+                    <div class="circles"></div>
+                </div>
+            </div>
             <div id="imageTitleContainer">
                 <div id="imageTitle">This is an image title</div>
                 <div id="imageBackground"></div>
             </div>
         </div>
+        <a href="#" id="tee">Test</a>
     </div>
-
 
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/carouselPlugin.js" type="text/javascript"></script>
     <script>
         var opts = {
             timeBetweenImages: 5,
-            transition: 'fade', //fade, slide, flash
+            transition: 'slide', //fade, slide, flash
             imageList: ['1.JPG', '2.JPG', '3.JPG', '4.JPG', '5.JPG', '6.JPG'],
             imageTitle: ["Beautiful LA Valley", "Amazing Grand Canyon", "The Glenn Canyon Dam", "SouthWest - Flying High!", "Some Clouds", "Oakland Landing"]
         };
 
-        $("#carouselContainer").carousel(opts);
+        var x = $("#carouselContainer").carousel(opts);
+
+        $("#tee").click(function(){
+            //console.log(x);
+            x(0, 1);
+        });
     </script>
 </body>
 </html>

@@ -66,3 +66,30 @@ html,body{
     width: 1000px;
     height: 400px;
 }
+
+#circlesOuterContainer{
+    width: 100px;
+    height: 15px;
+    position: absolute;
+    bottom: 100px;
+    left: 450px;
+    z-index: 1000;
+}
+
+#circlesInnerContainer{
+    height: 15px;
+    margin: auto;
+    display: inline-block;
+}
+
+.circles{
+    width: 10px;
+    height: 10px;
+    background: lightgrey;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    opacity: 0.7;
+}
