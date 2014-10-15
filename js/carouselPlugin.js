@@ -18,6 +18,12 @@
             imageNumber = 0;
         }
 
+        (function(){
+            for(var i=0; i<settings.imageList.length; i++){
+                $("#circlesInnerContainer").append("<div class='circles' data-id='"+i+"' title='"+settings.imageTitle[i]+"'></div>");
+            }
+        })();
+
         var changeImage = function(thisImage, stopCarousel){
 
             /*
@@ -31,6 +37,8 @@
                     var zi = getZIndex(onTop);
                     var nextImage = (thisImage + 1) > settings.imageList.length-1?0:thisImage+1;
 
+                    $(".circles").css("backgroundColor", "#ccc");
+                    $("[data-id='" + thisImage + "']").css('background', '#333');
                     switch(settings.transition){
                         case 'fade':
                             if(onTop == 1){
@@ -91,6 +99,7 @@
 
                 if(thisImage != -1){console.log(imageNumber+", title: "+displayTitleNumber);}
 
+                $(".circles").css("backgroundColor", "#ccc");
                 switch(settings.transition){
                     case 'fade':
                         $("#imageTitle").fadeOut('slow');
@@ -107,6 +116,7 @@
                                 $("#carouselImage2").css({display: 'block', 'z-index': --zindex}).attr('src', 'images/'+settings.imageList[imageNumber]);
                             });
                         }
+                        $("[data-id='" + displayTitleNumber + "']").css('background', '#333');
                         break;
                     case 'flash':
                         $("#carouselImage1").attr('src', 'images/'+settings.imageList[imageNumber]);
@@ -114,6 +124,7 @@
                         timeout = setTimeout(function() {
                             $("#imageTitle").text(settings.imageTitle[imageNumber]);
                         }, 50);
+                        $("[data-id='" + imageNumber + "']").css('background', '#333');
                         break;
                     case 'slide':
                         $("#carouselImage1, #carouselImage2").css('display', 'none');
@@ -125,6 +136,7 @@
                             $("#imageTitle").css('display', 'block').text(settings.imageTitle[displayTitleNumber]);
                             $(this).removeAttr('style');
                         });
+                        $("[data-id='" + displayTitleNumber + "']").css('background', '#333');
                         break;
                 }
             }, settings.timeBetweenImages*1000);
@@ -142,6 +154,7 @@
             return $("#carouselImage"+ofSlide).css('z-index');
         }
 
+        $("[data-id='0']").css('background', '#333');
         $("#carouselImage1").attr('src', 'images/'+settings.imageList[0]);
         $("#carouselImage2").attr('src', 'images/'+settings.imageList[1]);
         $("#imageTitle").text(settings.imageTitle[0]);

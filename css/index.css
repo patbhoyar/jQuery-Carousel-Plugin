@@ -68,11 +68,11 @@ html,body{
 }
 
 #circlesOuterContainer{
-    width: 100px;
+    width: 135px;
     height: 15px;
     position: absolute;
-    bottom: 100px;
-    left: 450px;
+    bottom: 50px;
+    left: 425px;
     z-index: 1000;
 }
 
@@ -85,8 +85,8 @@ html,body{
 .circles{
     width: 10px;
     height: 10px;
-    background: lightgrey;
-    border: 1px solid lightgrey;
+    background: #ccc;
+    border: 1px solid #ccc;
     border-radius: 10px;
     float: left;
     margin-left: 10px;
